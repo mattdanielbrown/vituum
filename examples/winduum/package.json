@@ -11,6 +11,6 @@
   "devDependencies": {
     "@vituum/vite-plugin-tailwindcss": "^1",
     "vituum": "^1",
-    "winduum": "^0.4"
+    "winduum": "^0.10.0"
   }
 }
