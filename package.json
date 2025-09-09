@@ -8,7 +8,7 @@
     "eslint": "eslint '**/*.js' --fix"
   },
   "dependencies": {
-    "chokidar": "^3.5",
+    "chokidar": "^4.0.3",
     "fast-glob": "^3.3",
     "lodash": "^4.17",
     "vite": "^6.2",
