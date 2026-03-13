@@ -18,6 +18,6 @@
     "@vituum/vite-plugin-posthtml": "^1.1.0",
     "@vituum/vite-plugin-pug": "^1.1.0",
     "@vituum/vite-plugin-tailwindcss": "^1.2.0",
-    "@vituum/vite-plugin-twig": "^1.1.0"
+    "@vituum/vite-plugin-twig": "^2.0.0"
   }
 }
