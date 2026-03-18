@@ -1,9 +1,15 @@
 {
   "name": "vituum",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "type": "module",
   "main": "src/index.js",
   "types": "types/index.d.ts",
+  "description": "Fast Prototyping with Template Engines in Vite. Small and fast static site generator for Vite.",
+  "keywords": [
+    "vituum",
+    "vite",
+    "vite-plugin"
+  ],
   "scripts": {
     "lint": "npm run eslint && npm run tsc",
     "tsc": "tsc",
