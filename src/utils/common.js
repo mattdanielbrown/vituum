@@ -2,6 +2,7 @@ import fs from 'fs'
 import { dirname, resolve } from 'path'
 import { fileURLToPath } from 'url'
 import process from 'node:process'
+import { styleText } from 'node:util'
 import { renameGenerateBundle } from './build.js'
 import { join } from 'node:path'
 import picomatch from 'picomatch'
@@ -21,20 +22,30 @@ export const getPackageInfo = path => JSON.parse(fs.readFileSync(resolve(dirname
  */
 export const pluginError = (error, server, name) => {
   if (error) {
+    const message = (typeof error === 'string' ? error : error.message).trim() || 'Unknown error'
+
     if (!server) {
       return new Promise((resolve, reject) => {
-        reject(new Error(typeof error === 'string' ? error : error.message))
+        reject(new Error(message))
       })
     }
 
-    setTimeout(() => server.ws.send({
-      type: 'error',
-      err: {
-        message: typeof error === 'string' ? error : error.message,
-        plugin: name,
-        stack: null,
-      },
-    }), 50)
+    server.config.logger.error(`${styleText('blue', `[${name}]`)} ${styleText('red', message)}`, {
+      clear: false,
+      timestamp: true,
+    })
+
+    setTimeout(() => {
+      server.ws.send({
+        type: 'error',
+        err: {
+          message: message.split('\n').map(line => line.trim()).find(Boolean) || 'Unknown error',
+          plugin: name,
+          stack: message,
+          frame: '',
+        },
+      })
+    }, 100)
 
     return true
   }
